@@ -13,3 +13,5 @@ pipenv shell
 pipenv install pyaudio
 pipenv install wave
 pipenv install sounddevice
+pipenv install numpy
+pipenv install webrtcvad
