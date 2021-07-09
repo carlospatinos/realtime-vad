@@ -9,6 +9,9 @@ pyaudio = "*"
 sounddevice = "*"
 numpy = "*"
 webrtcvad = "*"
+pydub = "*"
+scipy = "*"
+matplotlib = "*"
 
 [dev-packages]
 
