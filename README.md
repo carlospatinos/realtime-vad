@@ -38,6 +38,10 @@ Audio after silence removal:
 
 Duration of Audio in Seconds 2.01
 Duration of Audio in Minutes 0.033499999999999995
+
+# Plot real time audio
+python plotInput.py
+
 # Docs
 
 https://ngbala6.medium.com/audio-processing-and-remove-silence-using-python-a7fe1552007a

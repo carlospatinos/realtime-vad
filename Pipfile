@@ -12,6 +12,8 @@ webrtcvad = "*"
 pydub = "*"
 scipy = "*"
 matplotlib = "*"
+soundfile = "*"
+audio2numpy = "*"
 
 [dev-packages]
 
