@@ -110,10 +110,9 @@ def detectEmergencyFromStream():
         #     time.sleep(0.1)  # intermittently wake up
 
 
-emergencyMessage("./playback/emergencia.mp3")
-detectEmergencyFromStream()
-emergencyMessage("./playback/emergencia.mp3")
-detectEmergencyFromStream()
+for i in range(2):
+    emergencyMessage("./playback/emergencia.mp3")
+    detectEmergencyFromStream()
 
 print("voiceDetectionTimes: ", voiceDetectionTimes)
 if voiceDetectionTimes > EMERGENCY_THRESHOLD:
