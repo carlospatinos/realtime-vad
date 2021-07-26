@@ -17,8 +17,9 @@ import numpy as np
 import webrtcvad
 import audio2numpy as a2n
 
+EMERGENCY_THRESHOLD = 30
 emergencyDetectionDuration = 5.5  # seconds
-voiceDetection = False
+voiceDetectionTimes = 0
 
 channels = [1]
 # translate channel numbers to be 0-indexed
@@ -35,6 +36,7 @@ block_size = sample_rate * interval_size / 1000
 
 # get an instance of webrtc's voice activity detection
 vad = webrtcvad.Vad()
+vad.set_mode(3)
 
 print("reading audio stream from default audio input device:\n" +
       str(sd.query_devices()) + '\n')
@@ -65,7 +67,7 @@ def voice_activity_detection(audio_data):
 
 
 def audio_callback(indata, frames, time, status):
-    global voiceDetection
+    global voiceDetectionTimes
     # if voiceDetection == True:
     #     print("Audio already detected")
     #     return
@@ -90,7 +92,8 @@ def audio_callback(indata, frames, time, status):
     voiceDetection = voice_activity_detection(audio_data)
     # use just one line to show the detection status (speech / not-speech)
     print(f'Voz detectada?: {voiceDetection} \r', end="")
-    # if voiceDetection:
+    if voiceDetection:
+        voiceDetectionTimes += 1
     #     print("Audio detected redirecting to real agent -> :)")
 
 
@@ -111,3 +114,9 @@ emergencyMessage("./playback/emergencia.mp3")
 detectEmergencyFromStream()
 emergencyMessage("./playback/emergencia.mp3")
 detectEmergencyFromStream()
+
+print("voiceDetectionTimes: ", voiceDetectionTimes)
+if voiceDetectionTimes > EMERGENCY_THRESHOLD:
+    print("Emergency call")
+else:
+    print("Joke call")
